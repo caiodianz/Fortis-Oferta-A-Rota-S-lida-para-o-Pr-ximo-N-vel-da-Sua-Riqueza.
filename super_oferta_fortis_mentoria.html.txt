@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortis Mentoria - Pacote 100 E-books: O Segredo da Abundância</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Deep Navy Blue (#0f172a - slate-900), Vibrant Amber (#f59e0b - amber-500) for CTA, Clean White (Professionalism and High Value) -->
+    <!-- Application Structure Plan: Conversion-focused, single-page sales funnel. Flow: 1. High-Impact Hero (Headline, Price, Timer, Main CTA). 2. Social Proof/Credibility (The "Jovens" Challenge). 3. Value Stacking (100 E-books grouped by theme). 4. Visualization (Value Gap Chart). 5. Offer Details (R$299 vs. R$30 options). 6. Final Trust & CTA. This structure maximizes conversion by addressing pain, presenting the solution, justifying the price through visual value, and injecting urgency/social proof, making the offer irresistible. -->
+    <!-- Visualization & Content Choices: 1. Price Comparison Chart -> Goal: Justify extreme low price -> Viz: Bar Chart (Chart.js/Canvas) -> Interaction: Static, high-impact visual of value discrepancy -> Justification: Visual proof that R$299 for 100 E-books is an impossible-to-perder opportunity, showing the R$3000+ actual value. 2. Countdown Timer (JS) -> Goal: Urgency/Scarcity -> Viz: HTML/CSS Counter (JS logic). -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .bg-primary { background-color: #0f172a; } /* Slate 900 for dark mode professionalism */
+        .text-accent { color: #f59e0b; } /* Amber 500 for high-impact CTAs */
+        .btn-cta {
+            background-color: #f59e0b;
+            color: #0f172a;
+            box-shadow: 0 10px 15px -3px rgba(245, 158, 11, 0.5), 0 4px 6px -2px rgba(245, 158, 11, 0.05);
+            transition: all 0.3s ease;
+        }
+        .btn-cta:hover { background-color: #eab308; transform: translateY(-3px); }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <header class="bg-primary text-white sticky top-0 z-20">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold text-accent">Fortis Mentoria</h1>
+            <!-- CORREÇÃO: Alterado de '#offer' (ID inexistente) para '#payment-options' (ID existente) para corrigir o erro de scroll. -->
+            <a href="#payment-options" class="text-sm font-semibold hover:text-amber-300">Aproveitar a Oferta</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. HERO SECTION - High Impact -->
+        <section class="bg-primary text-white py-16 md:py-24 text-center border-b-8 border-amber-500 shadow-2xl">
+            <div class="container mx-auto px-6">
+                <p class="text-2xl font-bold mb-4 text-amber-500">Oportunidade Impossível de Perder — Válida Pelas Próximas Horas!</p>
+                <h2 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+                    DESTRAVE OS <span class="text-amber-500">100 SEGREDOS</span> DO EMPRESÁRIO ABUNDANTE
+                </h2>
+                <p class="text-2xl mb-10 max-w-4xl mx-auto text-slate-300">
+                    Acesso Imediato a 100 E-books Estratégicos que Jovens de Sucesso Usam para Escalar Negócios e Riqueza.
+                </p>
+
+                <!-- Timer -->
+                <div class="mb-10 p-4 bg-red-700/80 rounded-xl max-w-md mx-auto">
+                    <p class="text-xl font-semibold mb-2">OFERTA EXPIRA EM:</p>
+                    <div id="countdown" class="flex justify-center space-x-4">
+                        <div class="p-3 bg-white text-primary rounded-lg">
+                            <span id="hours" class="text-4xl font-extrabold">00</span>
+                            <span class="block text-xs font-semibold">HORAS</span>
+                        </div>
+                        <div class="p-3 bg-white text-primary rounded-lg">
+                            <span id="minutes" class="text-4xl font-extrabold">00</span>
+                            <span class="block text-xs font-semibold">MINUTOS</span>
+                        </div>
+                        <div class="p-3 bg-white text-primary rounded-lg">
+                            <span id="seconds" class="text-4xl font-extrabold">00</span>
+                            <span class="block text-xs font-semibold">SEGUNDOS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main CTA -->
+                <div class="max-w-xl mx-auto">
+                    <p class="text-3xl font-bold mb-3 text-slate-300">De <s class="text-red-500">R$ 3.997,00</s> por apenas:</p>
+                    <p class="text-7xl font-black text-amber-500 leading-none mb-6">R$ 299,00</p>
+                    <a href="#payment-options" class="btn-cta text-3xl font-extrabold py-5 px-10 rounded-xl block w-full uppercase">
+                        EU QUERO MEUS 100 E-BOOKS AGORA!
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. CREDIBILITY & SOCIAL PROOF -->
+        <section class="py-16 bg-white text-center">
+            <div class="container mx-auto px-6">
+                <h3 class="text-4xl font-bold mb-6 text-primary">Jovens Já Fizeram Acontecer. E Você?</h3>
+                <p class="text-xl max-w-3xl mx-auto text-slate-600 mb-8">
+                    Enquanto muitos esperam uma oportunidade cair do céu, a comunidade Fortis Mentoria — composta por empreendedores com menos de 30 anos — já está utilizando este conhecimento para criar múltiplas fontes de receita.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto text-primary">
+                    <div class="p-6 rounded-lg border-b-4 border-amber-500 shadow-lg">
+                        <span class="text-5xl font-extrabold text-amber-500 block mb-2">12x</span>
+                        <p class="font-semibold">Maior Faturamento (Média)</p>
+                    </div>
+                    <div class="p-6 rounded-lg border-b-4 border-amber-500 shadow-lg">
+                        <span class="text-5xl font-extrabold text-amber-500 block mb-2">90%</span>
+                        <p class="font-semibold">Processos Automatizados</p>
+                    </div>
+                    <div class="p-6 rounded-lg border-b-4 border-amber-500 shadow-lg">
+                        <span class="text-5xl font-extrabold text-amber-500 block mb-2">+1000</span>
+                        <p class="font-semibold">Empreendedores na Comunidade</p>
+                    </div>
+                </div>
+                <p class="text-2xl font-semibold mt-10 text-primary">
+                    Vai ficar aí esperando, ou vai se juntar aos que já estão construindo a abundância?
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. VALUE STACKING - The 100 E-books -->
+        <section id="value-stack" class="py-16 bg-slate-50">
+            <div class="container mx-auto px-6">
+                <h3 class="text-4xl font-bold text-center mb-4 text-primary">O Que Está Incluso: 100 E-books Divididos em 5 Pilares</h3>
+                <p class="text-xl text-center mb-12 text-slate-600 max-w-3xl mx-auto">Não são 100 títulos aleatórios. É uma biblioteca completa e estruturada para que você domine cada área do seu negócio.</p>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Bundle 1 -->
+                    <div class="bg-white p-6 rounded-xl shadow-xl border-t-4 border-amber-500">
+                        <h4 class="text-2xl font-bold mb-2 text-primary">🧠 Mente de Aço</h4>
+                        <p class="text-sm text-amber-600 font-semibold mb-4">(20 E-books Focados em Mindset)</p>
+                        <ul class="list-disc ml-5 text-slate-600 space-y-2">
+                            <li>Desbloqueio de Crenças Limitantes</li>
+                            <li>Foco Inabalável e Produtividade Máxima</li>
+                            <li>Técnicas de Autossabotagem Zero</li>
+                        </ul>
+                    </div>
+                    <!-- Bundle 2 -->
+                    <div class="bg-white p-6 rounded-xl shadow-xl border-t-4 border-amber-500">
+                        <h4 class="text-2xl font-bold mb-2 text-primary">🚀 Máquina de Vendas</h4>
+                        <p class="text-sm text-amber-600 font-semibold mb-4">(20 E-books de Marketing e Conversão)</p>
+                        <ul class="list-disc ml-5 text-slate-600 space-y-2">
+                            <li>Lançamentos Digitais de Alto Impacto</li>
+                            <li>Copywriting Persuasivo Nível Master</li>
+                            <li>Estratégias de Tráfego Pago Otimizado</li>
+                        </ul>
+                    </div>
+                    <!-- Bundle 3 -->
+                    <div class="bg-white p-6 rounded-xl shadow-xl border-t-4 border-amber-500">
+                        <h4 class="text-2xl font-bold mb-2 text-primary">⚙️ Alavancagem e IA</h4>
+                        <p class="text-sm text-amber-600 font-semibold mb-4">(20 E-books de Automação e Sistemas)</p>
+                        <ul class="list-disc ml-5 text-slate-600 space-y-2">
+                            <li>Guia de Ferramentas de IA para Negócios</li>
+                            <li>Criação de Funis de Vendas Automatizados</li>
+                            <li>Delegar e Gerenciar Equipes Virtuais</li>
+                        </ul>
+                    </div>
+                     <!-- Bundle 4 -->
+                    <div class="bg-white p-6 rounded-xl shadow-xl border-t-4 border-amber-500">
+                        <h4 class="text-2xl font-bold mb-2 text-primary">💰 Riqueza Previsível</h4>
+                        <p class="text-sm text-amber-600 font-semibold mb-4">(20 E-books de Finanças e Modelos de Receita)</p>
+                        <ul class="list-disc ml-5 text-slate-600 space-y-2">
+                            <li>Modelos de Assinatura e Recorrência</li>
+                            <li>Precificação Baseada em Valor (Não Custo)</li>
+                            <li>Multiplicação de Patrimônio</li>
+                        </ul>
+                    </div>
+                     <!-- Bundle 5 -->
+                    <div class="bg-white p-6 rounded-xl shadow-xl border-t-4 border-amber-500">
+                        <h4 class="text-2xl font-bold mb-2 text-primary">🎯 Profissional de Elite</h4>
+                        <p class="text-sm text-amber-600 font-semibold mb-4">(20 E-books de Produtividade Avançada)</p>
+                        <ul class="list-disc ml-5 text-slate-600 space-y-2">
+                            <li>Gestão de Tempo para Alto Desempenho</li>
+                            <li>Tomada de Decisão Rápida e Assertiva</li>
+                            <li>Networking Estratégico e de Alto Nível</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.5. GEMINI API - Personalized Pain Point Resolver -->
+        <section id="gemini-resolver" class="py-16 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h3 class="text-4xl font-bold text-center mb-4 text-primary">✨ O Seu Atalho, Decifrado pela IA</h3>
+                <p class="text-xl text-center mb-8 text-slate-600">
+                    Diga-nos o seu maior obstáculo no momento (ex: "Não consigo gerar tráfego qualificado" ou "Estou preso na gestão de tempo") e a nossa IA irá mostrar como o Pacote 100X é a solução exata.
+                </p>
+
+                <div class="flex flex-col md:flex-row gap-4 mb-4">
+                    <input type="text" id="struggleInput" placeholder="Digite seu principal desafio..." 
+                           class="flex-grow p-4 border-2 border-slate-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 text-lg">
+                    <button id="generateAdviceBtn" 
+                            class="btn-cta text-lg font-bold py-4 px-6 rounded-lg whitespace-nowrap disabled:opacity-50 transition duration-300">
+                        ✨ Resolver Meu Problema Agora!
+                    </button>
+                </div>
+                
+                <!-- Indicador de Carregamento -->
+                <div id="loadingIndicator" class="text-center text-primary mt-4 hidden">
+                    <svg class="animate-spin h-5 w-5 mr-3 inline text-amber-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    A analisar o seu desafio...
+                </div>
+
+                <!-- Saída da Resposta da IA -->
+                <div id="adviceOutput" class="mt-6 p-6 bg-slate-100 rounded-xl border-l-4 border-amber-500 hidden">
+                    <p class="text-2xl font-bold text-primary mb-3">O Pacote 100X Resolve Assim:</p>
+                    <p id="adviceText" class="text-lg text-slate-700 leading-relaxed"></p>
+                </div>
+                
+                <!-- Saída de Erro -->
+                <div id="errorOutput" class="mt-6 p-4 bg-red-100 text-red-700 rounded-lg hidden">
+                    Ocorreu um erro ao processar o seu pedido. Por favor, tente novamente.
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. VISUALIZATION - Value Gap -->
+        <section class="py-16 bg-primary text-white">
+            <div class="container mx-auto px-6 text-center">
+                 <h3 class="text-4xl font-bold mb-4 text-amber-500">A Oportunidade Visualizada</h3>
+                 <p class="text-xl max-w-3xl mx-auto mb-10 text-slate-300">
+                     Veja como o preço normal de 100 e-books se compara ao nosso preço de oportunidade. Esta diferença é o seu atalho para o sucesso.
+                 </p>
+                <div class="chart-container">
+                    <canvas id="valueChart"></canvas>
+                </div>
+                <p class="text-xl font-semibold mt-8 text-slate-300">O Preço Normal por E-book é de R$39,97. Na nossa Oferta, cada E-book sai por R$2,99. Você economiza 92%!</p>
+            </div>
+        </section>
+
+        <!-- 5. PAYMENT OPTIONS & FINAL CTA -->
+        <section id="payment-options" class="py-16 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h3 class="text-4xl font-bold mb-10 text-primary">Escolha Seu Caminho para a Abundância</h3>
+                
+                <div class="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+                    <!-- Opção 1: O Pacote Completo (R$299) -->
+                    <div class="p-8 border-4 border-amber-500 rounded-2xl shadow-2xl bg-slate-50">
+                        <p class="text-3xl font-extrabold text-amber-500 mb-2">O MAIS VENDIDO</p>
+                        <h4 class="text-5xl font-black text-primary mb-4">Pacote 100X</h4>
+                        <p class="text-2xl font-semibold text-slate-700 mb-6">Acesso Completo e Ilimitado</p>
+                        <p class="text-6xl font-black text-amber-500 mb-6">R$ 299,00</p>
+                        <ul class="list-none text-left space-y-3 mb-8 text-lg text-primary">
+                            <li class="flex items-center"><span class="text-green-500 text-2xl mr-3">✔</span> 100 E-books, 5 Pilares Estratégicos</li>
+                            <li class="flex items-center"><span class="text-green-500 text-2xl mr-3">✔</span> Biblioteca Completa Fortis Mentoria</li>
+                            <li class="flex items-center"><span class="text-green-500 text-2xl mr-3">✔</span> Desconto de 92% (Oportunidade Única)</li>
+                            <li class="flex items-center"><span class="text-green-500 text-2xl mr-3">✔</span> Bônus Exclusivo de Automação</li>
+                        </ul>
+                        <a href="#" class="btn-cta text-2xl font-bold py-4 px-8 rounded-xl block w-full uppercase">
+                            COMPRAR AGORA (R$299)
+                        </a>
+                    </div>
+
+                    <!-- Opção 2: O Starter Pack (R$30) -->
+                    <div class="p-8 border-2 border-slate-300 rounded-2xl shadow-lg">
+                        <p class="text-3xl font-extrabold text-slate-500 mb-2">PARA COMEÇAR</p>
+                        <h4 class="text-5xl font-black text-primary mb-4">Starter Pack</h4>
+                        <p class="text-2xl font-semibold text-slate-700 mb-6">1 E-book Essencial de Mentalidade</p>
+                         <p class="text-6xl font-black text-primary mb-6">R$ 30,00</p>
+                        <ul class="list-none text-left space-y-3 mb-8 text-lg text-slate-600">
+                            <li class="flex items-center"><span class="text-amber-500 text-2xl mr-3">★</span> 1 E-book: O Empresário Abundante</li>
+                            <li class="flex items-center"><span class="text-red-500 text-2xl mr-3">✖</span> Sem acesso aos 99 E-books restantes</li>
+                            <li class="flex items-center"><span class="text-red-500 text-2xl mr-3">✖</span> Sem Bônus de Automação</li>
+                            <li class="flex items-center"><span class="text-red-500 text-2xl mr-3">✖</span> Preço Promocional sem Garantia</li>
+                        </ul>
+                        <a href="#" class="bg-slate-700 text-white text-2xl font-bold py-4 px-8 rounded-xl block w-full hover:bg-slate-800 transition-colors uppercase">
+                            QUERO APENAS O STARTER (R$30)
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-12 p-6 max-w-3xl mx-auto bg-slate-100 rounded-xl border-l-4 border-amber-500">
+                     <p class="text-xl font-bold text-primary">GARANTIA DE RISCO ZERO:</p>
+                     <p class="text-lg text-slate-600 mt-2">Se você aplicar o conteúdo de pelo menos 10 e-books e não sentir que seu negócio e mentalidade foram transformados nos próximos 7 dias, devolvemos 100% do seu investimento de R$299. Sem perguntas.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="bg-primary text-white text-center p-6 mt-0">
+        <p>Fortis Mentoria &copy; 2025. Todos os Direitos Reservados. Mude sua mentalidade, mude seu futuro.</p>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // --- 1. COUNTDOWN TIMER LOGIC (URGÊNCIA PERSONALIZADA) ---
+    const countdownElement = document.getElementById('countdown');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    
+    const storageKey = 'fortis_mentoria_exp_time';
+    const durationHours = 4; // Duração da oferta: 4 horas
+
+    let storedTime = localStorage.getItem(storageKey);
+    let endTime;
+
+    if (storedTime) {
+        // Se o tempo estiver armazenado (usuário já visitou), usa o tempo armazenado
+        endTime = new Date(storedTime);
+    } else {
+        // Se for o primeiro acesso, calcula o tempo final e armazena
+        endTime = new Date();
+        endTime.setHours(endTime.getHours() + durationHours);
+        // Armazena como string ISO para persistência
+        localStorage.setItem(storageKey, endTime.toISOString()); 
+    }
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = endTime.getTime() - now; // Calcula a distância para o tempo final personalizado
+
+        // Calcula horas, minutos e segundos restantes
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Atualiza o display com zero à esquerda
+        hoursEl.textContent = String(hours).padStart(2, '0');
+        minutesEl.textContent = String(minutes).padStart(2, '0');
+        secondsEl.textContent = String(seconds).padStart(2, '0');
+
+        // Se a contagem regressiva acabar
+        if (distance < 0) {
+            clearInterval(timerInterval);
+            countdownElement.innerHTML = '<span class="text-2xl font-bold">OFERTA ENCERRADA!</span>';
+            // Opcional: remover o tempo do localStorage para que o usuário possa ver uma nova oferta no futuro.
+            // localStorage.removeItem(storageKey); 
+        }
+    }
+
+    const timerInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // --- 2. CHART.JS VISUALIZATION (VALOR) ---
+    const ctx = document.getElementById('valueChart').getContext('2d');
+    const valueChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Valor de Mercado (R$)', 'Seu Investimento (R$)'],
+            datasets: [{
+                label: 'Comparativo de Valor',
+                data: [3997, 299], // R$39.97 x 100 E-books vs R$299
+                backgroundColor: ['#eab308', '#0f172a'], // Amber and Navy
+                borderColor: ['#eab308', '#0f172a'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Preço em Reais (R$)',
+                        color: 'white'
+                    },
+                    ticks: {
+                         color: 'white'
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)' 
+                    }
+                },
+                x: {
+                    ticks: {
+                         color: 'white'
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)' 
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (context.parsed.y !== null) {
+                                label = 'R$ ' + new Intl.NumberFormat('pt-BR').format(context.parsed.y);
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // --- 3. SMOOTH SCROLL (NAVEGAÇÃO) ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            // Verifica se o targetId existe e se não é apenas '#'
+            if (targetId && targetId !== '#') {
+                const targetElement = document.querySelector(targetId);
+                // Verifica se o elemento foi realmente encontrado antes de tentar o scroll
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    console.error(`Erro: Elemento com ID ${targetId} não encontrado.`);
+                }
+            }
+        });
+    });
+    
+    // --- 4. GEMINI API INTEGRATION LOGIC (Pain Point Resolver) ---
+
+    // Configurações da API
+    const apiKey = ""; // A chave API será fornecida pelo ambiente
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+    const struggleInput = document.getElementById('struggleInput');
+    const generateAdviceBtn = document.getElementById('generateAdviceBtn');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    const adviceOutput = document.getElementById('adviceOutput');
+    const adviceText = document.getElementById('adviceText');
+    const errorOutput = document.getElementById('errorOutput');
+
+    // Funções de utilidade para a API (Exponential Backoff para tratamento de erros)
+    const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+    async function exponentialBackoffFetch(url, options, maxRetries = 5) {
+        for (let i = 0; i < maxRetries; i++) {
+            try {
+                const response = await fetch(url, options);
+                if (response.status === 429 && i < maxRetries - 1) {
+                    // Espera exponencial com jitter
+                    const delayTime = Math.pow(2, i) * 1000 + Math.random() * 1000;
+                    await delay(delayTime);
+                    continue; 
+                }
+                if (!response.ok) {
+                    // Tenta ler o erro do corpo da resposta, se possível
+                    let errorDetails = await response.text();
+                    try { errorDetails = JSON.parse(errorDetails); } catch (e) { /* ignore parse error */ }
+                    throw new Error(`HTTP error! Status: ${response.status}. Details: ${JSON.stringify(errorDetails)}`);
+                }
+                return response;
+            } catch (error) {
+                if (i === maxRetries - 1) throw error; 
+            }
+        }
+    }
+
+    // Função principal de geração de conselhos
+    async function generatePersonalizedAdvice() {
+        const userStruggle = struggleInput.value.trim();
+
+        if (!userStruggle) {
+            adviceOutput.classList.add('hidden');
+            errorOutput.textContent = 'Por favor, descreva o seu desafio para que a IA possa ajudar.';
+            errorOutput.classList.remove('hidden');
+            return;
+        }
+
+        // Resetar UI
+        adviceOutput.classList.add('hidden');
+        errorOutput.classList.add('hidden');
+        loadingIndicator.classList.remove('hidden');
+        generateAdviceBtn.disabled = true;
+
+        // System Prompt para guiar a IA a agir como copywriter de vendas
+        const systemPrompt = `Você é um copywriter de vendas para o produto 'Pacote 100 E-books Fortis Mentoria'. O produto contém 100 e-books divididos em 5 pilares principais: Mindset ('Mente de Aço'), Marketing/Vendas ('Máquina de Vendas'), Automação/IA ('Alavancagem e IA'), Finanças/Receita ('Riqueza Previsível') e Produtividade/Gestão ('Profissional de Elite'). Sua tarefa é analisar o desafio do usuário e gerar uma resposta altamente persuasiva de UM PARÁGRAFO (máximo 4 frases). A resposta deve focar em como o Pacote 100X oferece a solução exata para o problema, mencionando os pilares relevantes. Termine com um forte apelo à ação, como 'Clique no botão abaixo e comece a resolver isso hoje!'. Responda em Português (Portugal/BR).`;
+        
+        const userQuery = `O meu maior desafio de negócio/vida é: "${userStruggle}". Como o Pacote 100X me resolve este problema?`;
+
+        const payload = {
+            contents: [{ parts: [{ text: userQuery }] }],
+            // Não usamos grounding (google_search) pois queremos uma resposta criativa e interna ao produto
+            systemInstruction: {
+                parts: [{ text: systemPrompt }]
+            },
+        };
+
+        try {
+            const response = await exponentialBackoffFetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+            const generatedText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+            if (generatedText) {
+                adviceText.textContent = generatedText;
+                adviceOutput.classList.remove('hidden');
+            } else {
+                errorOutput.textContent = 'A IA não conseguiu gerar uma resposta convincente. Tente um desafio diferente ou simplifique o seu pedido.';
+                errorOutput.classList.remove('hidden');
+            }
+        } catch (error) {
+            console.error("Gemini API Error:", error);
+            errorOutput.textContent = 'Ocorreu um erro de comunicação com o servidor de IA. Por favor, verifique a sua ligação e tente novamente.';
+            errorOutput.classList.remove('hidden');
+        } finally {
+            loadingIndicator.classList.add('hidden');
+            generateAdviceBtn.disabled = false;
+        }
+    }
+
+    generateAdviceBtn.addEventListener('click', generatePersonalizedAdvice);
+
+
+});
+</script>
+</body>
+</html>
